@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('case_number');
             $table->string('title');
-            $table->string('description');
-            $table->string('status');
-            $table->date('date_reported');
+            $table->text('description');
+            $table->enum('status', ['open', 'gesloten', 'in onderzoek']);
+            $table->timestamp('date_reported');
             $table->string('location');
-            $table->unsignedBigInteger('investigator_id')->nullable();
             $table->timestamps();
         });
     }

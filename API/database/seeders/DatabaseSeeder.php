@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,17 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks
-        Schema::disableForeignKeyConstraints();
-
-        // Truncate all tables
-        DB::table('witnesses')->truncate();
-        DB::table('people')->truncate();
-        DB::table('cases')->truncate();
-
-        // Enable foreign key checks
-        Schema::enableForeignKeyConstraints();
-
+        // User::factory(10)->create();
         $cases = [
             [
                 'case_number' => 'H2025001',
@@ -139,6 +129,11 @@ class DatabaseSeeder extends Seeder
             ['case_id' => $cases[4]['id'], 'witness_name' => 'Hendrik Bos', 'statement' => 'De volgende ochtend zag ik een bebloed kledingstuk onder de brug. Het leek haastig weggegooid, alsof iemand zich ervan probeerde te ontdoen. Ik belde meteen de politie.'],
         ];
 
+
         DB::table('witnesses')->insert($witnesses);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
 }

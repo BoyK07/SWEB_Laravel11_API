@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('witnesses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('case_id');
+            $table->foreignId('case_id');
             $table->string('witness_name');
-            $table->text('statement');
+            $table->longText('statement');
             $table->timestamps();
         });
     }

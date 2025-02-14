@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('case_id')->nullable();
             $table->string('name');
-            $table->string('role');
+            $table->enum('role', ['slachtoffer', 'verdachte', 'rechercheur']);
             $table->integer('age');
-            $table->unsignedBigInteger('case_id');
             $table->timestamps();
+
         });
     }
 
